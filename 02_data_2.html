@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>双向数据绑定model--view</title>
+        <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+		<div ng-controller="myCtrl">
+			<input type="text" ng-model="msg" ng-change="show()">
+			<div>{{msg}}</div>
+			<div>{{chmsg}}</div>
+			<input type="text" ng-model="a" ng-change="show()">
+			<input type="text" ng-model="b"	ng-change="show()">
+			<div>{{a}}+{{b}}={{ab}}</div>
+		</div>
+    </body>
+    <script>
+    	var app = angular.module("app",[]);
+    	app.controller("myCtrl",["$scope",function($scope){
+    		$scope.show = function(){
+    			console.log($scope.msg);
+    			$scope.chmsg = "=="+$scope.msg+"==";
+    		}
+    		$scope.ab = parseInt($scope.a)+parseInt($scope.b)
+    	}])
+    </script>
+</html>

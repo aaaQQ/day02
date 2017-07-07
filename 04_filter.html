@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>过滤器</title>
+        <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+		<ul ng-controller="myCtrl">
+			<!-- 字母转大小写 -->
+			<li>{{english | uppercase}}</li>
+			<li>{{english | lowercase}}</li>
+			<li>{{price | currency:""}}</li>
+			<!-- date,格式化日期 -->
+			<li>{{d | date:"yyyy-MM-dd HH:mm:ss"}}</li>
+			<!-- filter,从数组中选择一个子集 -->
+			<li>{{names | filter:"a"}}</li>
+			<li>{{students | filter:{"age":14} }}</li>
+			<!-- json:将对象转换为json格式 -->
+			<li>{{student | json}}</li>
+			<!-- limitTO:限制长度 -->
+			<li>{{names | limitTo:-2}}</li>
+			<!-- number:千位分割符 -->
+			<li><input type="text" ng-model="num"><span>{{num | number:2}}</span></li>
+			<!-- orderBy:排序 -->
+			<li>{{arr | orderBy}}</li>
+			<li>{{students | orderBy:["age","id"]}}</li>
+			<li ng-repeat="n in names | filter:'i'">{{n}}</li>
+			<div ng-repeat="n in names">
+				<li ng-switch="list">{{n}}</li>
+			</div>
+		</ul>
+    </body>
+    <script>
+    	var app = angular.module("app",[]);
+    	app.controller("myCtrl",["$scope",function($scope){
+    		$scope.english = "AbCdE";
+    		$scope.price = 20;
+    		$scope.d = new Date();
+    		$scope.names = ["zhangsan","lisi","wangwu","Jim","Riven","UZI"];
+    		$scope.students = [
+    						{"id":27,"name":"UZI","age":13},
+    						{"id":21,"name":"MLXG","age":14},
+    						{"id":19,"name":"XIAOHU","age":16},
+    						{"id":28,"name":"Riven","age":15},
+    						{"id":23,"name":"Sydira","age":17}
+    					];
+    		$scope.student = new Object();
+    		$scope.student.id = 1001;
+    		$scope.student.name = "狗子";
+    		$scope.student.age = 23;
+    		$scope.arr = [2,3,6,3,6,7,8,9,1]
+    	}]);
+    </script>
+</html>

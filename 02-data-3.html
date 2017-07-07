@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>数据的初始化</title>
+        <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-init="msg='根作用域初始化信息'">
+		<div ng-controller="myCtrl" ng-init="info='子作用域初始化信息'">
+			<div>
+				第一个:{{info}}<br>
+				第一个msg:{{msg}}
+			</div>
+		</div>
+		<div>
+				第二个:{{info}}<br>
+				第二个msg:{{msg}}
+		</div>
+    </body>
+    <script>
+    var app = angular.module("app",[]);
+    app.controller("myCtrl",["$scope",function($scope){
+    	
+    }]);
+    </script>
+</html>
